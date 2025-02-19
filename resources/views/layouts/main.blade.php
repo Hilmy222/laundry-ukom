@@ -3,7 +3,7 @@
     <head>
 
         <meta charset="utf-8">
-        <title>Dashboard | Minia - Admin & Dashboard Template</title>
+        <title>Jems Laundry </title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta content="Tailwind Admin & Dashboard Template" name="description">
         <meta content="Themesbrand" name="author">
@@ -14,8 +14,11 @@
         <link rel="stylesheet" href="{{ url('/') }}/template/dist/assets/css/tailwind2.css">
     </head>
 
-    <body data-mode="light" data-sidebar-size="lg" class="group">
-        
+    <body data-mode="light" data-sidebar-size="lg" class="group min-h-screen">
+        @auth()
+        @php
+            $user = Auth::user();
+        @endphp
         <!-- ========== Left Sidebar Start ========== -->
         <div class="fixed bottom-0 z-10 h-screen ltr:border-r rtl:border-l vertical-menu rtl:right-0 ltr:left-0 top-[70px] bg-slate-50 border-gray-50 print:hidden dark:bg-zinc-800 dark:border-neutral-700">
         
@@ -25,59 +28,66 @@
                     <!-- Left Menu Start -->
                     <ul id="side-menu">
                         <li class="px-5 py-3 text-xs font-medium text-gray-500 cursor-default leading-[18px] group-data-[sidebar-size=sm]:hidden block" data-key="t-menu">Menu</li>
-        
                         <li>
-                            <a href="index.html" class="block py-2.5 px-6 text-sm font-medium text-gray-950 transition-all duration-150 ease-linear hover:text-violet-500 dark:text-gray-300 dark:active:text-white dark:hover:text-white">
+                            <a href="{{ route('admin.dashboard') }}" class="block py-2.5 px-6 text-sm font-medium text-gray-950 transition-all duration-150 ease-linear hover:text-violet-500 dark:text-gray-300 dark:active:text-white dark:hover:text-white">
                                 <i data-feather="home" fill="#545a6d33"></i>
-                                <span data-key="t-dashboard"> Dashboard</span>
+                                <span data-key="t-dashboard">Dashboard</span>
                             </a>
                         </li>
+                        @if (in_array($user->role, ['admin','kasir']))
                         <li>
-                            <a href="index.html" class="block py-2.5 px-6 text-sm font-medium text-gray-950 transition-all duration-150 ease-linear hover:text-violet-500 dark:text-gray-300 dark:active:text-white dark:hover:text-white">
+                            <a href="{{ route('admin.customers.index') }}" class="block py-2.5 px-6 text-sm font-medium text-gray-950 transition-all duration-150 ease-linear hover:text-violet-500 dark:text-gray-300 dark:active:text-white dark:hover:text-white">
                                 <i data-feather="user" fill="#545a6d33"></i>
                                 <span data-key="t-dashboard">Pelanggan</span>
                             </a>
                         </li>
+                        @endif
+                        @if ($user->role === 'admin')
+                            
                         <li>
-                            <a href="index.html" class="block py-2.5 px-6 text-sm font-medium text-gray-950 transition-all duration-150 ease-linear hover:text-violet-500 dark:text-gray-300 dark:active:text-white dark:hover:text-white">
+                            <a href="{{ route('admin.packages.index') }}" class="block py-2.5 px-6 text-sm font-medium text-gray-950 transition-all duration-150 ease-linear hover:text-violet-500 dark:text-gray-300 dark:active:text-white dark:hover:text-white">
                                 <i data-feather="home" fill="#545a6d33"></i>
-                                <span data-key="t-dashboard">Produk</span>
+                                <span data-key="t-dashboard">Paket</span>
                             </a>
                         </li>
                         <li>
-                            <a href="index.html" class="block py-2.5 px-6 text-sm font-medium text-gray-950 transition-all duration-150 ease-linear hover:text-violet-500 dark:text-gray-300 dark:active:text-white dark:hover:text-white">
+                            <a href="{{ route('admin.outlets.index') }}" class="block py-2.5 px-6 text-sm font-medium text-gray-950 transition-all duration-150 ease-linear hover:text-violet-500 dark:text-gray-300 dark:active:text-white dark:hover:text-white">
                                 <i data-feather="home" fill="#545a6d33"></i>
                                 <span data-key="t-dashboard">Outlet</span>
                             </a>
                         </li>
                         <li>
-                            <a href="index.html" class="block py-2.5 px-6 text-sm font-medium text-gray-950 transition-all duration-150 ease-linear hover:text-violet-500 dark:text-gray-300 dark:active:text-white dark:hover:text-white">
+                            <a href="{{ route('admin.users.index') }}" class="block py-2.5 px-6 text-sm font-medium text-gray-950 transition-all duration-150 ease-linear hover:text-violet-500 dark:text-gray-300 dark:active:text-white dark:hover:text-white">
                                 <i data-feather="home" fill="#545a6d33"></i>
                                 <span data-key="t-dashboard">Pengguna</span>
                             </a>
                         </li>
+                        
+                        @endif
+                        
+                        @if (in_array($user->role, ['admin','kasir']))
                         <li>
-                            <a href="index.html" class="block py-2.5 px-6 text-sm font-medium text-gray-950 transition-all duration-150 ease-linear hover:text-violet-500 dark:text-gray-300 dark:active:text-white dark:hover:text-white">
+                            <a href="{{ route('admin.transactions.index') }}" class="block py-2.5 px-6 text-sm font-medium text-gray-950 transition-all duration-150 ease-linear hover:text-violet-500 dark:text-gray-300 dark:active:text-white dark:hover:text-white">
                                 <i data-feather="home" fill="#545a6d33"></i>
                                 <span data-key="t-dashboard">Transaksi</span>
                             </a>
                         </li>
+                        @endif
+                        @if (in_array($user->role, ['admin','kasir','owner']))
                         <li>
-                            <a href="index.html" class="block py-2.5 px-6 text-sm font-medium text-gray-950 transition-all duration-150 ease-linear hover:text-violet-500 dark:text-gray-300 dark:active:text-white dark:hover:text-white">
+                            <a href="#" class="block py-2.5 px-6 text-sm font-medium text-gray-950 transition-all duration-150 ease-linear hover:text-violet-500 dark:text-gray-300 dark:active:text-white dark:hover:text-white">
                                 <i data-feather="home" fill="#545a6d33"></i>
                                 <span data-key="t-dashboard">Laporan</span>
                             </a>
                         </li>
-    
-        
+                        @endif
                     </ul>
-        
                 </div>
                 <!-- Sidebar -->
             </div>
         </div>
-        <!-- Left Sidebar End --><nav class="fixed top-0 left-0 right-0 z-10 flex items-center bg-white  dark:bg-zinc-800 print:hidden dark:border-zinc-700 ltr:pr-6 rtl:pl-6">
-        
+        <!-- Left Sidebar End -->
+        <nav class="fixed top-0 left-0 right-0 z-10 flex items-center bg-white  dark:bg-zinc-800 print:hidden dark:border-zinc-700 ltr:pr-6 rtl:pl-6">
             <div class="flex justify-between w-full">
                 <div class="flex items-center topbar-brand">
                     <div class="hidden lg:flex navbar-brand items-center justify-between shrink px-6 h-[70px]  ltr:border-r rtl:border-l bg-[#fbfaff] border-gray-50 dark:border-zinc-700 dark:bg-zinc-800 shadow-none">
@@ -122,17 +132,20 @@
                             <div class="relative dropdown">
                                 <button type="button" class="flex items-center px-3 py-2 h-[70px] border-x border-gray-50 bg-gray-50/30  dropdown-toggle dark:bg-zinc-700 dark:border-zinc-600 dark:text-gray-100" id="page-header-user-dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                                     <img class="border-[3px] border-gray-700 dark:border-zinc-400 rounded-full w-9 h-9 ltr:xl:mr-2 rtl:xl:ml-2" src="/template/dist/assets/images/avatar-1.jpg" alt="Header Avatar" class="object-cover">
-                                    <span class="hidden font-medium xl:block">Jems</span>
+                                    <span class="hidden font-medium xl:block">{{ $user->username }}</span>
                                     <i class="hidden align-bottom mdi mdi-chevron-down xl:block"></i>
                                 </button>
                                 <div class="absolute top-0 z-50 hidden w-40 list-none bg-white dropdown-menu dropdown-animation rounded shadow  dark:bg-zinc-800" id="profile/log">
                                     <div class="border border-gray-50 dark:border-zinc-600" aria-labelledby="navNotifications">
                                         <hr class="border-gray-50 dark:border-gray-700">
                                         <div class="dropdown-item dark:text-gray-100">
-                                            <a class="block p-3 hover:bg-gray-50/50 dark:hover:bg-zinc-700/50" href="logout.html">
+                                            <a class="block p-3 hover:bg-gray-50/50 dark:hover:bg-zinc-700/50" href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                                 <i class="mr-1 align-middle mdi mdi-logout text-16"></i> Logout
                                             </a>
                                         </div>
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="hidden">
+                                            @csrf
+                                        </form>
                                     </div>
                                 </div>
                             </div>
@@ -141,144 +154,8 @@
                 </div>
             </div>
         </nav>
-        
-        <div class="hidden">
-            <div class="fixed inset-0 z-40 transition-opacity bg-black/40"></div>
-            <div class="fixed right-0 z-50 h-screen bg-white w-80" data-simplebar>
-                <div class="flex items-center p-4 border-b border-gray-100">
-                    <h5 class="m-0 mr-2">Theme Customizer</h5>
-                    <a href="javascript:void(0);" class="w-6 h-6 ml-auto text-center bg-gray-700 rounded-full">
-                        <i class="leading-relaxed text-white align-middle mdi mdi-close text-15"></i>
-                    </a>
-                </div>
-                <div class="p-4">
-                    <h6 class="mb-3">Layout</h6>
-                    <div class="flex gap-4">
-                        <div>
-                            <input class="focus:ring-0" checked type="radio" name="layout" id="layout-vertical" value="vertical">
-                            <label class="align-middle" for="layout-vertical">Vertical</label>
-                        </div>
-                        <div>
-                            <input class="focus:ring-0" type="radio" name="layout" id="layout-horizontal" value="horizontal">
-                            <label class="align-middle" for="layout-horizontal">Horizontal</label>
-                        </div>
-                    </div>
-        
-                    <h6 class="pt-2 mt-4 mb-3">Layout Mode</h6>
-                    <div class="flex gap-4">
-                        <div>
-                            <input class="focus:ring-0" checked type="radio" name="layout-mode" id="layout-mode-light" value="light">
-                            <label class="form-check-label" for="layout-mode-light">Light</label>
-                        </div>
-                        <div>
-                            <input class="focus:ring-0" type="radio" name="layout-mode" id="layout-mode-dark" value="dark">
-                            <label class="form-check-label" for="layout-mode-dark">Dark</label>
-                        </div>
-                    </div>
-        
-                    <h6 class="pt-2 mt-4 mb-3">Layout Width</h6>
-        
-                    <div class="flex gap-4">
-                        <div>
-                            <input class="focus:ring-0" checked type="radio" name="layout-width" id="layout-width-fuild" value="fuild" onchange="document.body.setAttribute('data-layout-size', 'fluid')">
-                            <label class="form-check-label" for="layout-width-fuild">Fluid</label>
-                        </div>
-                        <div>
-                            <input class="focus:ring-0" type="radio" name="layout-width" id="layout-width-boxed" value="boxed" onchange="document.body.setAttribute('data-layout-size', 'boxed')">
-                            <label class="form-check-label" for="layout-width-boxed">Boxed</label>
-                        </div>
-                    </div>
-        
-                    <h6 class="pt-2 mt-4 mb-3">Layout Position</h6>
-                    <div class="flex gap-4">
-                        <div>
-                            <input class="focus:ring-0" checked type="radio" name="layout-position" id="layout-position-fixed" value="fixed" onchange="document.body.setAttribute('data-layout-scrollable', 'false')">
-                            <label class="form-check-label" for="layout-position-fixed">Fixed</label>
-                        </div>
-                        <div>
-                            <input class="focus:ring-0" checked type="radio" name="layout-position" id="layout-position-scrollable" value="scrollable" onchange="document.body.setAttribute('data-layout-scrollable', 'true')">
-                            <label class="form-check-label" for="layout-position-scrollable">Scrollable</label>
-                        </div>
-                    </div>
-        
-                    <h6 class="pt-2 mt-4 mb-3">Topbar Color</h6>
-                    <div class="flex gap-4">
-                        <div>
-                            <input class="focus:ring-0" checked type="radio" name="topbar-color" id="topbar-color-light" value="light" onchange="document.body.setAttribute('data-topbar', 'light')">
-                            <label class="form-check-label" for="topbar-color-light">Light</label>
-                        </div>
-                        <div>
-                            <input class="focus:ring-0" type="radio" name="topbar-color" id="topbar-color-dark" value="dark" onchange="document.body.setAttribute('data-topbar', 'dark')">
-                            <label class="form-check-label" for="topbar-color-dark">Dark</label>
-                        </div>
-                    </div>
-        
-                    <h6 class="pt-2 mt-4 mb-3 sidebar-setting">Sidebar Size</h6>
-        
-                    <div class="space-y-1">
-                        <div class="form-check sidebar-setting">
-                            <input class="focus:ring-0" checked type="radio" name="sidebar-size" id="sidebar-size-default" value="default" onchange="document.body.setAttribute('data-sidebar-size', 'lg')">
-                            <label class="form-check-label" for="sidebar-size-default">Default</label>
-                        </div>
-                        <div class="form-check sidebar-setting">
-                            <input class="focus:ring-0" type="radio" name="sidebar-size" id="sidebar-size-compact" value="compact" onchange="document.body.setAttribute('data-sidebar-size', 'md')">
-                            <label class="form-check-label" for="sidebar-size-compact">Compact</label>
-                        </div>
-                        <div class="form-check sidebar-setting">
-                            <input class="focus:ring-0" type="radio" name="sidebar-size" id="sidebar-size-small" value="small" onchange="document.body.setAttribute('data-sidebar-size', 'sm')">
-                            <label class="form-check-label" for="sidebar-size-small">Small (Icon View)</label>
-                        </div>
-                    </div>
-        
-                    <h6 class="pt-2 mt-4 mb-3 sidebar-setting">Sidebar Color</h6>
-                    <div class="space-y-1">
-                        <div class="form-check sidebar-setting">
-                            <input class="focus:ring-0" checked type="radio" name="sidebar-color" id="sidebar-color-light" value="light" onchange="document.body.setAttribute('data-sidebar', 'light')">
-                            <label class="form-check-label" for="sidebar-color-light">Light</label>
-                        </div>
-                        <div class="form-check sidebar-setting">
-                            <input class="focus:ring-0" type="radio" name="sidebar-color" id="sidebar-color-dark" value="dark" onchange="document.body.setAttribute('data-sidebar', 'dark')">
-                            <label class="form-check-label" for="sidebar-color-dark">Dark</label>
-                        </div>
-                        <div class="form-check sidebar-setting">
-                            <input class="focus:ring-0" type="radio" name="sidebar-color" id="sidebar-color-brand" value="brand" onchange="document.body.setAttribute('data-sidebar', 'brand')">
-                            <label class="form-check-label" for="sidebar-color-brand">Brand</label>
-                        </div>
-                    </div>
-        
-                    <h6 class="pt-2 mt-4 mb-3">Direction</h6>
-        
-                </div>
-            </div>
-        </div>
-        <div class="main-content group-data-[sidebar-size=sm]:ml-[70px]">
-            <div class="page-content dark:bg-zinc-700">
-                <div class="container-fluid px-[0.625rem]">
-
-                    <div class="grid grid-cols-1 pb-6">
-                        <div class="md:flex items-center justify-between px-[2px]">
-                            <h4 class="text-[18px] font-medium text-gray-800 mb-sm-0 grow dark:text-gray-100 mb-2 md:mb-0">Dashboard</h4>
-                            <nav class="flex" aria-label="Breadcrumb">
-                                <ol class="inline-flex items-center space-x-1 ltr:md:space-x-3 rtl:md:space-x-0">
-                                    <li class="inline-flex items-center">
-                                        <a href="#" class="inline-flex items-center text-sm text-gray-800 hover:text-gray-900 dark:text-zinc-100 dark:hover:text-white">
-                                            Dashboard
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <div class="flex items-center rtl:mr-2">
-                                           <i class="font-semibold text-gray-600 align-middle far fa-angle-right text-13 rtl:rotate-180 dark:text-zinc-100"></i>
-                                            <a href="#" class="text-sm font-medium text-gray-500 ltr:ml-2 rtl:mr-2 hover:text-gray-900 ltr:md:ml-2 rtl:md:mr-2 dark:text-gray-100 dark:hover:text-white">Dashboard</a>
-                                        </div>
-                                    </li>
-                                </ol>
-                            </nav>
-                        </div>
-                        <h1>Welcome to dashboard</h1>
-                    </div>
-
-                </div>
-            </div>
+        @endauth
+        @yield('content')
         <script src="/template/dist/assets/libs/@popperjs/core/umd/popper.min.js"></script>
         <script src="/template/dist/assets/libs/feather-icons/feather.min.js"></script>
         <script src="/template/dist/assets/libs/metismenujs/metismenujs.min.js"></script>
@@ -302,6 +179,7 @@
         <script src="/template/dist/assets/js/pages/login.init.js"></script>
 
         <script  src="/template/dist/assets/js/app.js"></script>
+        <script  src="/template/dist/assets/js/custom.js"></script>
 
     </body>
 

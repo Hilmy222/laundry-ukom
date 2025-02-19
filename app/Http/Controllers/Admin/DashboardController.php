@@ -9,6 +9,10 @@ class DashboardController extends Controller
 {
     public function dashboard()
     {
-        return view ('layouts.main');
+        return view ('admin.pages.dashboard');
+    }
+
+    public function errorpage(){
+        return view ('y');
     }
 }
