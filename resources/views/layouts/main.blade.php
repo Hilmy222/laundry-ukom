@@ -46,19 +46,19 @@
                             
                         <li>
                             <a href="{{ route('admin.packages.index') }}" class="block py-2.5 px-6 text-sm font-medium text-gray-950 transition-all duration-150 ease-linear hover:text-violet-500 dark:text-gray-300 dark:active:text-white dark:hover:text-white">
-                                <i data-feather="home" fill="#545a6d33"></i>
+                                <i data-feather="package" fill="#545a6d33"></i>
                                 <span data-key="t-dashboard">Paket</span>
                             </a>
                         </li>
                         <li>
-                            <a href="{{ route('admin.outlets.index') }}" class="block py-2.5 px-6 text-sm font-medium text-gray-950 transition-all duration-150 ease-linear hover:text-violet-500 dark:text-gray-300 dark:active:text-white dark:hover:text-white">
-                                <i data-feather="home" fill="#545a6d33"></i>
+                            <a href="{{ route('admin.outlets.index') }}" class="flex items-center gap-3 py-2.5 px-6 text-sm font-medium text-gray-950 transition-all duration-150 ease-linear hover:text-violet-500 dark:text-gray-300 dark:active:text-white dark:hover:text-white">
+                                <i class="bx bx-store text-lg"></i>
                                 <span data-key="t-dashboard">Outlet</span>
                             </a>
                         </li>
                         <li>
-                            <a href="{{ route('admin.users.index') }}" class="block py-2.5 px-6 text-sm font-medium text-gray-950 transition-all duration-150 ease-linear hover:text-violet-500 dark:text-gray-300 dark:active:text-white dark:hover:text-white">
-                                <i data-feather="home" fill="#545a6d33"></i>
+                            <a href="{{ route('admin.users.index') }}" class="flex items-center gap-3 py-2.5 px-6 text-sm font-medium text-gray-950 transition-all duration-150 ease-linear hover:text-violet-500 dark:text-gray-300 dark:active:text-white dark:hover:text-white">
+                                <i class="bx bxs-user-circle text-lg"></i>
                                 <span data-key="t-dashboard">Pengguna</span>
                             </a>
                         </li>
@@ -67,16 +67,16 @@
                         
                         @if (in_array($user->role, ['admin','kasir']))
                         <li>
-                            <a href="{{ route('admin.transactions.index') }}" class="block py-2.5 px-6 text-sm font-medium text-gray-950 transition-all duration-150 ease-linear hover:text-violet-500 dark:text-gray-300 dark:active:text-white dark:hover:text-white">
-                                <i data-feather="home" fill="#545a6d33"></i>
+                            <a href="{{ route('admin.transactions.index') }}" class="flex items-center gap-3 py-2.5 px-6 text-sm font-medium text-gray-950 transition-all duration-150 ease-linear hover:text-violet-500 dark:text-gray-300 dark:active:text-white dark:hover:text-white">
+                                <i class="bx bx-money text-lg"></i>
                                 <span data-key="t-dashboard">Transaksi</span>
                             </a>
                         </li>
                         @endif
                         @if (in_array($user->role, ['admin','kasir','owner']))
                         <li>
-                            <a href="#" class="block py-2.5 px-6 text-sm font-medium text-gray-950 transition-all duration-150 ease-linear hover:text-violet-500 dark:text-gray-300 dark:active:text-white dark:hover:text-white">
-                                <i data-feather="home" fill="#545a6d33"></i>
+                            <a href="#" class="flex items-center gap-3 py-2.5 px-6 text-sm font-medium text-gray-950 transition-all duration-150 ease-linear hover:text-violet-500 dark:text-gray-300 dark:active:text-white dark:hover:text-white">
+                                <i class="bx bx-notepad text-lg"></i>
                                 <span data-key="t-dashboard">Laporan</span>
                             </a>
                         </li>

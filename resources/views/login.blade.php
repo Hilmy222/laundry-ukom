@@ -13,11 +13,11 @@
             <img src="{{ asset('icon/laundrylogo.svg') }}" alt="">
             <h1 class="font-semibold text-5xl text-white">Jems Laundry</h1>
         </div>
-        <div class="bg-white w-[45%] h-[500px] flex flex-col justify-center px-24 rounded-r-xl">
+        <div class="bg-white w-[45%] h-[5 00px] flex flex-col justify-center px-24 rounded-r-xl">
             <p class="text-xs">Welcome Back!</p>
             <p class="font-semibold text-lg mb-5">Login to your account</p>
             <div class="flex flex-col">
-            <form action="{{ route('login.proses') }}" method="POST" >
+            <form action="{{ route('login.proses') }}" method="POST" class="flex flex-col">
                 <label for="" class="text-sm mb-1">Email</label>
                 <input id="email" type="text" name="username"
                 class="border border-gray-400 outline-none rounded-sm px-4 py-2 font-light text-sm"
@@ -31,7 +31,7 @@
             </div>
        
             @csrf
-            <button type="submit">Login</button>
+            <button type="submit" class="bg-blue-600 text-white font-medium py-2 rounded-xl">Login</button>
         </form>
         </div>
     </div>

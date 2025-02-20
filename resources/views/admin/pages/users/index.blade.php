@@ -11,7 +11,7 @@
                                 List Pengguna</h4>
                         </div>
                     </div>
-                    <a href="" categories="button"
+                    <a href="{{ route('admin.users.create') }}" categories="button"
                         class="mb-6 text-white bg-[#3366FF] border-transparent btn hover:bg-gray-200"><i
                             class="mr-1 mdi mdi-plus"></i>Tambah Pengguna</a>
                 </div>
